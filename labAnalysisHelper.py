@@ -53,18 +53,22 @@ class labAnalysisHelper:
     def applyOtsuThreshold(self, image=None):
         image = self.selectDefaultIfNone(image)
         
-        ret, thresh = cv.threshold(image, 0, 255, cv.THRESH_BINARY + cv.THRESH_OTSU)
+        # ret, thresh = cv.threshold(image, 0, 255, cv.THRESH_BINARY + cv.THRESH_OTSU)
+        thresh = cv.adaptiveThreshold(image ,255,cv.ADAPTIVE_THRESH_GAUSSIAN_C, cv.THRESH_BINARY,35,5)
         self.currentImage = thresh
-        print(f"Otsu threshold: {ret}")
+        # print(f"Otsu threshold: {thr}")
 
         return thresh
     
     def applyThreshold(self, threshold=127, image=None):
         image = self.selectDefaultIfNone(image)
         
-        ret, thresh = cv.threshold(image, threshold, 255, cv.THRESH_BINARY)
+        # ret, thresh = cv.threshold(image, threshold, 255, cv.THRESH_BINARY)
+        # self.currentImage = thresh
+        thresh = cv.adaptiveThreshold(image ,255,cv.ADAPTIVE_THRESH_GAUSSIAN_C, cv.THRESH_BINARY,101,-5)
         self.currentImage = thresh
-        print(f"Threshold: {ret}")
+
+        print(f"Threshold")
 
         return thresh
     
