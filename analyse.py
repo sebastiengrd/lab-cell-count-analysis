@@ -37,7 +37,7 @@ def analyseImage(imagePath):
     # labAnalysis.showHistogram()
 
 
-    labAnalysis.applyThreshold(42, removedOutterEdge)
+    labAnalysis.applyThreshold(20, removedOutterEdge)
     # labAnalysis.showImage()
     labAnalysis.saveImage("thresholded", folder=outputFolderPath)
     thresholded = labAnalysis.currentImage.copy()
@@ -111,4 +111,9 @@ def analyseImage(imagePath):
 
 
 if __name__=="__main__":
-    analyseImage("toAnalyse/2023-02-02_MM-parameter_Jillian02_0h_DAPI_HC2.jpg")
+    # analyseImage("toAnalyse/2023-02-02_MM-parameter_Jillian02_0h_DAPI_HC2.jpg")
+
+    # loop over each image in toAnalyse and analyse them
+
+    for file in os.listdir("toAnalyse"):
+        analyseImage(f"toAnalyse/{file}")
